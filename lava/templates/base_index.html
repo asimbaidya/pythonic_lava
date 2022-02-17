@@ -5,19 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap 5 CSS -->
-    <!-- <link
+    <!-- Bootstrap CSS -->
+    <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <!-- Bootstrap 4 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link
     rel="stylesheet"
     type="text/css"
     href="{{ url_for('static', filename='style/style.css') }}"
     >
-
     
     <!-- Our title chooser -->
     {% if title %}
@@ -53,7 +50,7 @@
     <main role="main" class="container body-content">
       <div class="row">
         <!-- issue/post content -->
-        <div class="col-md-8 center">
+        <div class="col-md-8">
           {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
               {% for category, message in messages %}
@@ -62,9 +59,22 @@
                 </div>
               {% endfor %}
             {% endif %}
-          {% endwith %}
+        {% endwith %}
           {% block content %}
           {% endblock %}
+        </div>
+        <!-- sidebar for additional/custom query -->
+        <div class="col-md-4">
+          <div class="content-overview">
+            <h3>Overview</h3>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">
+                  Most recent</li>
+                <li
+                class="list-group-item list-group-item-light">
+                Most vote</li>
+              </ul>
+          </div>
         </div>
       </div>
     </main>
