@@ -24,6 +24,9 @@ def create_app(config_class=Config):
     @app.route('/')
     def index():
         return render_template('index.html',title='Reports')
+    @app.route('/map')
+    def map():
+        return render_template('map.html',title='Reports')
 
     from lava.users.routes import users
     app.register_blueprint(users)
