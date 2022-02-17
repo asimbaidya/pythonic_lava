@@ -21,15 +21,15 @@ def create_app(config_class=Config):
     bcrypt.init_app(app)
     login_manager.init_app(app)
 
-    @app.route('/')
-    def index():
-        return render_template('index.html',title='Reports')
-    @app.route('/map')
-    def map():
-        return render_template('map.html',title='Reports')
 
+    from lava.main import main
     from lava.posts.routes import posts
     from lava.users.routes import users
-    app.register_blueprint(users)
+    from lava.map import map
+
+    app.register_blueprint(main)
     app.register_blueprint(posts)
+    app.register_blueprint(users)
+    app.register_blueprint(map)
+
     return app

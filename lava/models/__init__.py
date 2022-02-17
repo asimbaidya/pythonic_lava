@@ -1,4 +1,5 @@
 from datetime import datetime
+from email.policy import default
 from flask import current_app
 from flask_login import UserMixin
 from lava import db
@@ -31,8 +32,10 @@ class Post(db.Model):
     date_posted = db.Column(db.DateTime,
         nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
+    image = db.Column(db.String(100), nullable=False,default='default.jpg')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     comments = db.relationship('Comment', backref='post', lazy=True)
+
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}'"

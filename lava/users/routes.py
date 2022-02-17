@@ -13,7 +13,7 @@ users = Blueprint('users', __name__)
 def register():
     if current_user.is_authenticated:
         flash(f'You are alread logged in!', 'success')
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
     form = RegistatonForm()
     if form.validate_on_submit():
         hashed_pass = bcrypt.generate_password_hash(
@@ -30,7 +30,7 @@ def register():
 def login():
     if current_user.is_authenticated:
         flash(f'You are alread logged in!', 'success')
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -42,7 +42,7 @@ def login():
             if next_page:
                 return redirect(next_page)
             else:
-                return redirect(url_for('index'))
+                return redirect(url_for('main.index'))
         else:
             flash(f'Login unsuccessful, please email & password info', 'danger')
     return render_template('login.html', title='Login', form=form)
@@ -51,4 +51,4 @@ def login():
 def logout():
     logout_user()
     flash(f'You have successufily logged out!', 'success')
-    return redirect(url_for('index'))
+    return redirect(url_for('main.index'))

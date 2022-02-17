@@ -9,4 +9,4 @@ class PostForm(FlaskForm):
     content = TextAreaField('Content', validators=[DataRequired()])
     submit = SubmitField('Post')
     picture = FileField('Visual',
-    validators=[DataRequired(), FileAllowed(['jpg', 'png','jpeg','tiff'])])
+        validators=[ FileAllowed(['jpg', 'png','jpeg','tiff'])])
