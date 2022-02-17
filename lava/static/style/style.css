@@ -2,6 +2,7 @@ body {
   margin-top: 5rem;
   background-color:#8A919966;
   background-color:#707A8C;
+  background-color: white;
 }
 
 
@@ -40,6 +41,10 @@ body {
   border-radius: 2px;
   height: 100%;
   margin-bottom: 10px;
+}
+
+.up,.down{
+  width: auto;
 }
 
 a:link { text-decoration: none; }

@@ -7,8 +7,14 @@ from wtforms import (StringField,
     DateField,
     BooleanField,
     )
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms.validators import (DataRequired,
+    Length,
+    Email,
+    EqualTo,
+    ValidationError,
+    )
 
+from lava.models import User
 
 class RegistatonForm(FlaskForm):
     name = StringField('Name',
@@ -21,6 +27,11 @@ class RegistatonForm(FlaskForm):
        choices = [('M', 'Male'), ('F', 'Female'),('O','Other')])
     b_date = DateField('Birth Date')
     submit = SubmitField('Register')
+
+    def validate_email(self, email):
+        email = User.query.filter_by(email=email.data).first()
+        if email:
+            raise ValidationError(f"Choose a different email address!!")
 
 
     
