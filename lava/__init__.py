@@ -28,6 +28,8 @@ def create_app(config_class=Config):
     def map():
         return render_template('map.html',title='Reports')
 
+    from lava.posts.routes import posts
     from lava.users.routes import users
     app.register_blueprint(users)
+    app.register_blueprint(posts)
     return app

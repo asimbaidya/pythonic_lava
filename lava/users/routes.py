@@ -4,7 +4,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 from lava.users.forms import RegistatonForm, LoginForm
 from lava import db,bcrypt
-from lava.models import User
+from lava.models import User,Post
 
 users = Blueprint('users', __name__)
 

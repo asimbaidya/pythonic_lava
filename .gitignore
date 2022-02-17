@@ -1,3 +1,4 @@
 __pycache__
 builddb.py
-lava/createmap.py
+build_db.py
+build_map.py

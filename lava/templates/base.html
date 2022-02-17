@@ -40,10 +40,31 @@
               <a class="nav-item nav-link" href="#">Map</a>
               <a class="nav-item nav-link" href="#">YouCanDo</a>
             </div>
-            <!-- Navbar Right Side  with ms-auto bootstrap-5 stuff -->
+              <!-- Navbar Right Side -->
             <div class="navbar-nav ms-auto">
-              <a class="nav-item nav-link" href="/login">Login</a>
-              <a class="nav-item nav-link" href="/register">Join</a>
+              {% if current_user.is_authenticated %}
+                <a
+                  class="nav-item nav-link"
+                  href="{{ url_for('posts.new_post')}} ">
+                  Create
+                </a>
+                <a
+                  class="nav-item nav-link"
+                  href="{{ url_for('users.logout')}} ">
+                  Logout
+                </a>
+              {% else %}
+                <a
+                  class="nav-item nav-link"
+                  href="{{ url_for('users.login')}} ">
+                  Login
+                </a>
+                <a
+                  class="nav-item nav-link"
+                  href="{{ url_for('users.register')}} ">
+                  Join
+                </a>
+              {% endif %}
             </div>
           </div>
         </div>
