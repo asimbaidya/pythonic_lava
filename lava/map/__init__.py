@@ -4,4 +4,4 @@ map = Blueprint('map', __name__)
 
 @map.route('/map')
 def maps():
-    return render_template('maps.html')
+    return render_template('map.html')

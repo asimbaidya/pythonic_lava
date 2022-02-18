@@ -1,31 +1,28 @@
 {% extends "base_index.html" %}
 {% block content %}
-    {% for post in range(1,10) %}
+    {% for post in posts.items %}
         <article class="media content-section">
           <div class="media-body">
             <div class="vote">
               <div class="up">
                 <a href="#">
-                👆{{99}}
+                👆{{post.up}}
                 </a>
               </div>
               <div class="down">
                 <a href="#">
-                👇{{9}}
+                👇{{post.down}}
                 </a>
               </div>
             </div>
             <div class="article-metadata">
-              <a class="mr-2" href="#">MEHEDI HASAN</a>
-              <small class="text-muted">25-05-22</small>
+              <a class="mr-2" href="#">{{post.author.name}}</a>
+              <small class="text-muted">{{post.date_posted.strftime('%Y-%m-%d')}}</small>
             </div>
-            <h2><a class="article-title" href="#">City of Dust</a></h2>
-            <p class="article-content">
-                Five among the top 10 causes of death in Bangladesh are related to air pollution, according to the World Health Organization
-                Green activists voiced deep concern over serious dust pollution that grapples 90% of people living in Dhaka city.
-                They urged the authorities concerned to take effective steps to check it.
-                Speaking at a human chain program, they further said the intensity of dust pollution rises usually during winter due to road digging and delayed disposal of waste, causing the spread of various respiratory, allergy, and skin diseases.
-            </p>
+            <h2>
+              <a class="article-title" href="{{ url_for('posts.post',post_id=post.id) }}">{{post.title}}</a>
+            </h2>
+            <p class="article-content">{{post.content}}</p>
           </div>
         </article>
     {% endfor %}

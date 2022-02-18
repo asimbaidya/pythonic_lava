@@ -33,7 +33,10 @@ class Post(db.Model):
         nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
     image = db.Column(db.String(100), nullable=False,default='default.jpg')
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    up = db.Column(db.Integer,nullable=False,default=0)
+    down = db.Column(db.Integer,nullable=False,default=0)
+    user_id = db.Column(db.Integer,
+        db.ForeignKey('user.id',ondelete="CASCADE"), nullable=False)
     comments = db.relationship('Comment', backref='post', lazy=True)
 
 
@@ -44,10 +47,12 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
     date_commented = db.Column(db.DateTime,
-        nullable=False, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
+        nullable=False, default=datetime.utcnow())
+    user_id = db.Column(db.Integer,
+        db.ForeignKey('user.id',ondelete="CASCADE"), nullable=False)
+    post_id = db.Column(db.Integer,
+        db.ForeignKey('post.id',ondelete="CASCADE"), nullable=False)
     
     
     def __repr__(self):
-        return f"Comment by('{self.author}', '{self.commented}'"
+        return f"Comment by('{self.author}', '{self.content}'"
