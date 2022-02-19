@@ -57,6 +57,7 @@
   <div>
       {% for comment in post.comments %}
           <p class="font-monospace border border-1 text-truncate" >{{comment.content}}</p> 
+          <p>{{comment.author.name}}</p>
       {% endfor %}
   </div>
 {% endblock content %}

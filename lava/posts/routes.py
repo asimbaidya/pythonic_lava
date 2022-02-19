@@ -24,11 +24,14 @@ posts = Blueprint('posts', __name__)
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
-        if form.picture.data:
-            picture_file = save_picture(form.picture.data)
-            current_user.image_file = picture_file
+        # if form.picture.data:
+            # picture_file = save_picture(form.picture.data)
+            # current_user.image_file = picture_file
+            # print('form data',form.picture)
 
-        picture_file = 'default.jpg'
+        picture_file = save_picture(form.picture.data)
+        current_user.image_file = picture_file
+        # picture_file = 'default.jpg'
         post = Post(title=form.title.data,
             content=form.content.data,image=picture_file, author=current_user)
         db.session.add(post)
@@ -36,7 +39,7 @@ def new_post():
         flash('Your post has been Created!', category='success')
         return redirect(url_for('main.index'))
     return render_template('create_post.html',
-        title='New Post', form=form, legend='Post | Post')
+        title='New Post', form=form, legend='Post')
 
 
 @posts.route('/post/<int:post_id>', methods=['GET', 'POST'])
@@ -53,7 +56,6 @@ def create_comment(post_id):
         flash("Post does not exist!",category='danger')
         return redirect(url_for('main.index'))
     else:
-        print("Post exist-")
         content = request.form.get('text')
         if content is None:
             flash("Please enter something!",category='danger')
