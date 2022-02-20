@@ -25,7 +25,7 @@
           </h2>
           <p class="article-content">{{post.content}}</p>
         <img
-          class="article-img"
+          class="article-img img-thumbnail"
           src="{{ url_for('static', filename='media/' + post.image) }}"
           alt="Post Image"
         >
@@ -56,8 +56,10 @@
   <!-- showing comments -->
   <div>
       {% for comment in post.comments %}
-          <p class="font-monospace border border-1 text-truncate" >{{comment.content}}</p> 
-          <p>{{comment.author.name}}</p>
+        <div>
+          </p>{{comment.content}}</p> 
+          <small>by <i>{{comment.author.name}}</i></small>
+        </div>
       {% endfor %}
   </div>
 {% endblock content %}

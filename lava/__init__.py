@@ -26,10 +26,12 @@ def create_app(config_class=Config):
     from lava.posts.routes import posts
     from lava.users.routes import users
     from lava.map import map
+    from lava.todo import todo
 
     app.register_blueprint(main)
     app.register_blueprint(posts)
     app.register_blueprint(users)
     app.register_blueprint(map)
+    app.register_blueprint(todo)
 
     return app

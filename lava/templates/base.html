@@ -37,8 +37,21 @@
           </button>
           <div class="collapse navbar-collapse " id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="#">Map</a>
-              <a class="nav-item nav-link" href="#">YouCanDo</a>
+              <a
+                class="nav-item nav-link"
+                href="{{url_for('map.maps')}}">
+                Map
+              </a>
+              <a 
+                class="nav-item nav-link"
+                href="{{url_for('todo.ycd')}}">
+                YouCanDo
+              </a>
+              <a 
+                class="nav-item nav-link"
+                href="{{url_for('todo.clean_air')}}">
+                CleanAir
+              </a>
             </div>
               <!-- Navbar Right Side -->
             <div class="navbar-nav ms-auto">
